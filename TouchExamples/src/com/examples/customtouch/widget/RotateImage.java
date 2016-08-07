@@ -48,6 +48,7 @@ public class RotateImage extends ImageView {
         mValueAnimator.setRepeatMode(ValueAnimator.RESTART);
         mValueAnimator.setRepeatCount(10);
         mValueAnimator.setDuration(3000);
+        mValueAnimator.setStartDelay(500);
         mValueAnimator.setInterpolator(new LinearInterpolator());
         mValueAnimator.start();
     }
