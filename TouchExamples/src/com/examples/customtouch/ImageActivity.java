@@ -10,6 +10,6 @@ public class ImageActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.image_rotate);
+        setContentView(R.layout.touch_test);
     }
 }
