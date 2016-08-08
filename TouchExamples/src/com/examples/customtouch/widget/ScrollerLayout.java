@@ -44,6 +44,9 @@ public class ScrollerLayout extends ViewGroup {
         int y = (int) ev.getY();
         switch (action){
             case MotionEvent.ACTION_DOWN:
+                if(!mScroller.isFinished()){
+                    mScroller.abortAnimation();
+                }
                 mLastX = x;
                 mLastY = y;
                 break;
@@ -79,12 +82,11 @@ public class ScrollerLayout extends ViewGroup {
                 mVelocityTracker.computeCurrentVelocity(1000);
                 float vel = mVelocityTracker.getYVelocity();
                 int index = 0;
-                if(Math.abs(vel) > 50){
+                if(Math.abs(vel) > 500){
                     index = vel > 0 ? 0:1;
                     Log.d(TAG,"vel："+vel);
                 }else {
                     index = (getScrollY() + getChildAt(0).getMeasuredHeight()/2)/getChildAt(0).getMeasuredHeight();
-                    Log.d(TAG,"index："+index);
                 }
                 int dy = index * getChildAt(0).getMeasuredHeight()- getScrollY();
                 mScroller.startScroll(0, getScrollY(), 0, dy);
