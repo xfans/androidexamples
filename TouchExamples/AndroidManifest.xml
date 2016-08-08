@@ -30,6 +30,7 @@
                   android:screenOrientation="portrait"/>
         <activity android:name=".TouchInterceptActivity" />
         <activity android:name=".ImageActivity"/>
+        <activity android:name=".ScrollerActivity"/>
     </application>
 
 </manifest>
