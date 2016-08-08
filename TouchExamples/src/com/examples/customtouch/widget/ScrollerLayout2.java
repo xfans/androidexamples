@@ -8,28 +8,26 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 /**
  * Created by zhu on 2016/8/7.
  */
-public class ScrollerLayout extends ViewGroup {
+public class ScrollerLayout2 extends ViewGroup {
     private static final String TAG = "ScrollerLayout";
     private Scroller mScroller;
     private int mLastX,mLastY;
     private int mTouchSlop;
     private VelocityTracker mVelocityTracker;
-    public ScrollerLayout(Context context) {
+    public ScrollerLayout2(Context context) {
         this(context, null);
     }
 
-    public ScrollerLayout(Context context, AttributeSet attrs) {
+    public ScrollerLayout2(Context context, AttributeSet attrs) {
         this(context, attrs, 0);
     }
 
-    public ScrollerLayout(Context context, AttributeSet attrs, int defStyleAttr) {
+    public ScrollerLayout2(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         mScroller = new Scroller(context);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
@@ -44,6 +42,9 @@ public class ScrollerLayout extends ViewGroup {
         int y = (int) ev.getY();
         switch (action){
             case MotionEvent.ACTION_DOWN:
+                if(!mScroller.isFinished()){
+                    mScroller.abortAnimation();
+                }
                 mLastX = x;
                 mLastY = y;
                 break;
@@ -78,16 +79,9 @@ public class ScrollerLayout extends ViewGroup {
             case MotionEvent.ACTION_CANCEL:
                 mVelocityTracker.computeCurrentVelocity(1000);
                 float vel = mVelocityTracker.getYVelocity();
-                int index = 0;
-                if(Math.abs(vel) > 50){
-                    index = vel > 0 ? 0:1;
-                    Log.d(TAG,"vel："+vel);
-                }else {
-                    index = (getScrollY() + getChildAt(0).getMeasuredHeight()/2)/getChildAt(0).getMeasuredHeight();
-                    Log.d(TAG,"index："+index);
-                }
-                int dy = index * getChildAt(0).getMeasuredHeight()- getScrollY();
-                mScroller.startScroll(0, getScrollY(), 0, dy);
+
+                mScroller.fling(0,getScrollY(),0,(int)-vel,0,0,0,getChildAt(0).getMeasuredHeight()*2);
+
                 invalidate();
                 break;
         }
