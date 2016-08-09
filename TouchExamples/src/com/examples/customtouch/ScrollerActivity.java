@@ -4,7 +4,10 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.support.v4.widget.SwipeRefreshLayout;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -21,7 +24,7 @@ public class ScrollerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.scroller_layout);
 //        findViewById(R.id.sl).scrollTo(0, 100);
-        mLayoutInflater = LayoutInflater.from(this);
+                mLayoutInflater = LayoutInflater.from(this);
         mViewPager = (ViewPager) findViewById(R.id.vp);
         mViewPager.setAdapter(new PagerAdapter() {
             @Override
@@ -46,6 +49,23 @@ public class ScrollerActivity extends Activity {
             @Override
             public void destroyItem(ViewGroup container, int position, Object object) {
                 container.removeView((View) object);
+            }
+        });
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.d("ScrollerLayout","position:"+position);
+
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
     }

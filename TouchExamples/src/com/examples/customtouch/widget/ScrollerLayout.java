@@ -36,6 +36,36 @@ public class ScrollerLayout extends ViewGroup {
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
         mVelocityTracker = VelocityTracker.obtain();
     }
+    boolean isInControl = false;
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        int x = (int) ev.getX();
+        int y = (int) ev.getY();
+
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                if (!mScroller.isFinished()) {
+                    mScroller.abortAnimation();
+                }
+                mLastX = x;
+                mLastY = y;
+                break;
+            case MotionEvent.ACTION_MOVE:
+                int deltaX = x - mLastX;
+                int deltaY = y - mLastY;
+                if (!isInControl &&Math.abs(deltaY) - Math.abs(deltaX) > 200 && Math.abs(deltaY) > mTouchSlop) {
+                    isInControl=true;
+                    Log.d(TAG, "dispatchTouchEvent：");
+                    ev.setAction(MotionEvent.ACTION_UP);
+                    //MotionEvent event=ev.obtain(ev);
+                    dispatchTouchEvent(ev);
+                    //event.setAction(MotionEvent.ACTION_DOWN);
+                    //return dispatchTouchEvent(event);
+                }
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {

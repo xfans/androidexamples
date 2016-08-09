@@ -33,9 +33,8 @@ public class LView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.i("LTAG", "Button:onTouchEvent "+getAction(event));
-        Log.i("LTAG", "Button:onTouchEvent default return " + super.onTouchEvent(event));
 
-        return true;
+        return super.onTouchEvent(event);
     }
     private String getAction(MotionEvent ev) {
         int action = ev.getAction();

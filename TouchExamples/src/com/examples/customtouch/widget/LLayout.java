@@ -25,7 +25,6 @@ public class LLayout extends ViewGroup {
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
         Log.i("LTAG", "LLayout dispatchTouchEvent :" + getAction(ev));
-        Log.i("LTAG", "LLayout dispatchTouchEvent default return " + super.dispatchTouchEvent(ev));
         return super.dispatchTouchEvent(ev);
     }
 
@@ -53,7 +52,6 @@ public class LLayout extends ViewGroup {
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
         Log.i("LTAG", "LLayout onInterceptTouchEvent :" + getAction(ev));
-        Log.i("LTAG", "LLayout onInterceptTouchEvent default return " + super.onInterceptTouchEvent(ev));
         return false;
     }
 
@@ -92,8 +90,7 @@ public class LLayout extends ViewGroup {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         Log.i("LTAG", "LLayout onTouchEvent " + getAction(event));
-        Log.i("LTAG", "LLayout onTouchEvent default return " + super.onTouchEvent(event));
-        return false;
+        return true;
     }
 
 }
