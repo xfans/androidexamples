@@ -3,13 +3,13 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent">
-<com.examples.customtouch.LLayout
+<com.examples.customtouch.widget.LLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#ff0000">
-    <com.examples.customtouch.LView
+    <com.examples.customtouch.widget.LView
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="#0000ff"/>
-</com.examples.customtouch.LLayout>
+</com.examples.customtouch.widget.LLayout>
 </LinearLayout>

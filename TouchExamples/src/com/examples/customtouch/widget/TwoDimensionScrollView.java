@@ -169,7 +169,7 @@ public class TwoDimensionScrollView extends FrameLayout {
 
     /*
      * Monitor touch events passed down to the children and
-     * intercept as soon as it is determined we are dragging.  This
+     * mIntercept as soon as it is determined we are dragging.  This
      * allows child views to still receive touch events if they are
      * interactive (i.e. Buttons)
      */

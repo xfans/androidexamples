@@ -177,7 +177,7 @@ public class TwoDimensionGestureScrollView extends FrameLayout {
 
     /*
      * Monitor touch events passed down to the children and
-     * intercept as soon as it is determined we are dragging
+     * mIntercept as soon as it is determined we are dragging
      */
     @Override
     public boolean onInterceptTouchEvent(MotionEvent event) {

@@ -6,10 +6,10 @@ import android.os.Bundle;
 /**
  * Created by mac01 on 16/7/6.
  */
-public class ImageActivity extends Activity {
+public class TouchActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.image_rotate);
+        setContentView(R.layout.touch_test);
     }
 }

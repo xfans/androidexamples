@@ -8,8 +8,6 @@ import android.view.VelocityTracker;
 import android.view.View;
 import android.view.ViewConfiguration;
 import android.view.ViewGroup;
-import android.widget.CalendarView;
-import android.widget.LinearLayout;
 import android.widget.Scroller;
 
 /**
@@ -18,9 +16,12 @@ import android.widget.Scroller;
 public class ScrollerLayout extends ViewGroup {
     private static final String TAG = "ScrollerLayout";
     private Scroller mScroller;
-    private int mLastX,mLastY;
+    private int mLastX, mLastY;
     private int mTouchSlop;
     private VelocityTracker mVelocityTracker;
+    boolean mIntercept = false;
+    int index = 0;
+
     public ScrollerLayout(Context context) {
         this(context, null);
     }
@@ -38,13 +39,13 @@ public class ScrollerLayout extends ViewGroup {
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        boolean intercept = false;
+        mIntercept = false;
         int action = ev.getAction();
         int x = (int) ev.getX();
         int y = (int) ev.getY();
-        switch (action){
+        switch (action) {
             case MotionEvent.ACTION_DOWN:
-                if(!mScroller.isFinished()){
+                if (!mScroller.isFinished()) {
                     mScroller.abortAnimation();
                 }
                 mLastX = x;
@@ -53,8 +54,8 @@ public class ScrollerLayout extends ViewGroup {
             case MotionEvent.ACTION_MOVE:
                 int deltaX = x - mLastX;
                 int deltaY = y - mLastY;
-                if (deltaY > deltaX && deltaY > mTouchSlop){
-                    intercept = true;
+                if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > mTouchSlop) {
+                    mIntercept = true;
                 }
                 break;
             case MotionEvent.ACTION_UP:
@@ -63,34 +64,51 @@ public class ScrollerLayout extends ViewGroup {
         }
         mLastX = x;
         mLastY = y;
-        return intercept;
+        Log.d(TAG, "mIntercept：" + mIntercept + " ev:" + ev.getAction());
+        return mIntercept;
     }
 
     @Override
     public boolean onTouchEvent(MotionEvent ev) {
         mVelocityTracker.addMovement(ev);
+        Log.d(TAG, "onTouchEvent：" + ev.getAction());
         int action = ev.getAction();
         int x = (int) ev.getX();
         int y = (int) ev.getY();
-        switch (action){
+        switch (action) {
             case MotionEvent.ACTION_MOVE:
-                int deltaY = y - mLastY;
-                scrollBy(0,-deltaY);
+
+                if (!mIntercept) {
+                    int deltaX = x - mLastX;
+                    int deltaY = y - mLastY;
+                    if (Math.abs(deltaY) > Math.abs(deltaX) && Math.abs(deltaY) > mTouchSlop) {
+                        mIntercept = true;
+                    }
+                }
+                if (mIntercept) {
+                    int deltaY = y - mLastY;
+                    scrollBy(0, -deltaY);
+                }
+
                 break;
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL:
-                mVelocityTracker.computeCurrentVelocity(1000);
-                float vel = mVelocityTracker.getYVelocity();
-                int index = 0;
-                if(Math.abs(vel) > 500){
-                    index = vel > 0 ? 0:1;
-                    Log.d(TAG,"vel："+vel);
-                }else {
-                    index = (getScrollY() + getChildAt(0).getMeasuredHeight()/2)/getChildAt(0).getMeasuredHeight();
+                if (mIntercept) {
+                    mVelocityTracker.computeCurrentVelocity(1000);
+                    float vel = mVelocityTracker.getYVelocity();
+
+                    if (Math.abs(vel) > 500) {
+                        index = vel > 0 ? index - 1 : index + 1;
+                        Log.d(TAG, "vel：" + vel);
+                    } else {
+                        index = (getScrollY() + getChildAt(0).getMeasuredHeight() / 2) / getChildAt(0).getMeasuredHeight();
+                    }
+                    if (index < 0) index = 0;
+                    if (index > getChildCount() - 1) index = getChildCount() - 1;
+                    int dy = index * getChildAt(0).getMeasuredHeight() - getScrollY();
+                    mScroller.startScroll(0, getScrollY(), 0, dy);
+                    invalidate();
                 }
-                int dy = index * getChildAt(0).getMeasuredHeight()- getScrollY();
-                mScroller.startScroll(0, getScrollY(), 0, dy);
-                invalidate();
                 break;
         }
         mLastX = x;
@@ -100,8 +118,8 @@ public class ScrollerLayout extends ViewGroup {
 
     @Override
     public void computeScroll() {
-        if(mScroller.computeScrollOffset()){
-           scrollTo(mScroller.getCurrX(),mScroller.getCurrY());
+        if (mScroller.computeScrollOffset()) {
+            scrollTo(mScroller.getCurrX(), mScroller.getCurrY());
             postInvalidate();
         }
     }
@@ -109,23 +127,23 @@ public class ScrollerLayout extends ViewGroup {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
-        measureChildren(widthMeasureSpec,heightMeasureSpec);
-        int resolveW = resolveSize(100,widthMeasureSpec);
+        measureChildren(widthMeasureSpec, heightMeasureSpec);
+        int resolveW = resolveSize(100, widthMeasureSpec);
         int hMode = MeasureSpec.getMode(heightMeasureSpec);
         int h = 0;
-        for (int i = 0;i<getChildCount();i++){
+        for (int i = 0; i < getChildCount(); i++) {
             h += getChildAt(0).getMeasuredHeight();
         }
-        setMeasuredDimension(resolveW,h);
+        setMeasuredDimension(resolveW, h);
     }
 
     @Override
     protected void onLayout(boolean changed, int l, int t, int r, int b) {
         int count = getChildCount();
         int offset = 0;
-        for (int i =0 ;i<count;i++){
+        for (int i = 0; i < count; i++) {
             View v = getChildAt(i);
-            v.layout(l,offset + t,r,offset + v.getMeasuredHeight());
+            v.layout(l, offset + t, r, offset + v.getMeasuredHeight());
             offset += v.getMeasuredHeight();
         }
     }

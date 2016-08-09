@@ -8,10 +8,12 @@ package com.examples.customtouch;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.view.ViewPager;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.ScrollView;
 
 public class MainActivity extends ListActivity implements OnItemClickListener {
 
@@ -19,7 +21,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
             "Move Logger Example", "Touch Listener Example",
             "Touch Delegate Example", "Touch Forward Example",
             "Pan Example", "Pan Gesture Example",
-	        "Multi-Touch Example", "Disable Touch Intercept", "Rotate Image","ScrollerLayout","ScrollerLayout2"};
+	        "Multi-Touch Example", "Disable Touch Intercept", "Rotate Image","ScrollerLayout","ScrollerLayout2","TouchEvent"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +29,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
 		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ITEMS);
 		getListView().setAdapter(adapter);
 		getListView().setOnItemClickListener(this);
+
 	}
 
 	@Override
@@ -55,12 +58,19 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
                 break;
             case 7: //Disable Touch Intercept
                 startActivity(new Intent(this, TouchInterceptActivity.class));
+                break;
             case 8: //Disable Touch Intercept
                 startActivity(new Intent(this, ImageActivity.class));
+                break;
             case 9: //Disable Touch Intercept
                 startActivity(new Intent(this, ScrollerActivity.class));
+                break;
             case 10: //Disable Touch Intercept
                 startActivity(new Intent(this, ScrollerActivity2.class));
+                break;
+            case 11: //Disable Touch Intercept
+                startActivity(new Intent(this, TouchActivity.class));
+                break;
             default:
                 break;
         }
