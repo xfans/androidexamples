@@ -7,7 +7,19 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 
+import com.examples.customtouch.utils.LogText;
+
 public class LView extends View {
+    private boolean onTouchEvent;
+
+    public boolean isOnTouchEvent() {
+        return onTouchEvent;
+    }
+
+    public void setOnTouchEvent(boolean onTouchEvent) {
+        this.onTouchEvent = onTouchEvent;
+    }
+
     public LView(Context context) {
         super(context);
     }
@@ -32,27 +44,9 @@ public class LView extends View {
     // TextView <-- View
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i("LTAG", "Button:onTouchEvent "+getAction(event));
+        LogText.i("LView:onTouchEvent ",event);
 
-        return super.onTouchEvent(event);
+        return onTouchEvent;
     }
-    private String getAction(MotionEvent ev) {
-        int action = ev.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                return "ACTION_DOWN";
 
-            case MotionEvent.ACTION_UP:
-                return "ACTION_UP";
-
-            case MotionEvent.ACTION_MOVE:
-                return "ACTION_MOVE";
-
-            case MotionEvent.ACTION_CANCEL:
-                return "ACTION_CANCEL";
-            default:
-                return "error";
-        }
-
-    }
 }

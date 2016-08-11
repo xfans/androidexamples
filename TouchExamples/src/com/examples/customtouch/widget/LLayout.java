@@ -8,7 +8,28 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
+import com.examples.customtouch.utils.LogText;
+
 public class LLayout extends ViewGroup {
+    private boolean onTouchEvent;
+    private boolean onInterceptTouchEvent;
+
+    public boolean isOnTouchEvent() {
+        return onTouchEvent;
+    }
+
+    public void setOnTouchEvent(boolean onTouchEvent) {
+        this.onTouchEvent = onTouchEvent;
+    }
+
+    public boolean isOnInterceptTouchEvent() {
+        return onInterceptTouchEvent;
+    }
+
+    public void setOnInterceptTouchEvent(boolean onInterceptTouchEvent) {
+        this.onInterceptTouchEvent = onInterceptTouchEvent;
+    }
+
     public LLayout(Context context) {
         super(context);
     }
@@ -24,35 +45,15 @@ public class LLayout extends ViewGroup {
     @Override
     public boolean dispatchTouchEvent(MotionEvent ev) {
 
-        Log.i("LTAG", "LLayout dispatchTouchEvent :" + getAction(ev));
+        LogText.i("LLayout:dispatch",ev);
         return super.dispatchTouchEvent(ev);
-    }
-
-    private String getAction(MotionEvent ev) {
-        int action = ev.getAction();
-        switch (action) {
-            case MotionEvent.ACTION_DOWN:
-                return "ACTION_DOWN";
-
-            case MotionEvent.ACTION_UP:
-                return "ACTION_UP";
-
-            case MotionEvent.ACTION_MOVE:
-                return "ACTION_MOVE";
-
-            case MotionEvent.ACTION_CANCEL:
-                return "ACTION_CANCEL";
-            default:
-                return "error";
-        }
-
     }
 
     // ViewGroup
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
-        Log.i("LTAG", "LLayout onInterceptTouchEvent :" + getAction(ev));
-        return false;
+        LogText.i("LLayout:onIntercept",ev);
+        return onInterceptTouchEvent;
     }
 
     @Override
@@ -89,8 +90,8 @@ public class LLayout extends ViewGroup {
     // View
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        Log.i("LTAG", "LLayout onTouchEvent " + getAction(event));
-        return true;
+        LogText.i("LLayout:onTouchEvent ",event);
+        return onTouchEvent;
     }
 
 }
