@@ -33,6 +33,7 @@
         <activity android:name=".ScrollerActivity"/>
         <activity android:name=".ScrollerActivity2"/>
         <activity android:name=".TouchActivity"/>
+        <activity android:name=".WaterActivity"/>
     </application>
 
 </manifest>
