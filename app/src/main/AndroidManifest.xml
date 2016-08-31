@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.examples.demo">
+    <uses-permission android:name="android.permission.READ_LOGS" />
+    <application
+        android:icon="@drawable/ic_launcher"
+        android:label="Examples"
+        android:theme="@style/AppTheme">
+        <activity
+            android:name="com.examples.demo.MainActivity"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name="com.examples.demo.TwoDimensionScrollActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.TwoDimensionGestureScrollActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.MultitouchActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.MoveLoggerActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.TouchForwardActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.TouchDelegateActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.TouchListenerActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.TouchInterceptActivity" />
+        <activity android:name="com.examples.demo.ImageActivity"/>
+        <activity android:name="com.examples.demo.ScrollerActivity"/>
+        <activity android:name="com.examples.demo.ScrollerActivity2"/>
+        <activity android:name="com.examples.demo.TouchActivity"/>
+        <activity android:name="com.examples.demo.WaterActivity"/>
+    </application>
+
+</manifest>
