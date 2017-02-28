@@ -34,6 +34,7 @@
         <activity android:name="com.examples.demo.ScrollerActivity2"/>
         <activity android:name="com.examples.demo.TouchActivity"/>
         <activity android:name="com.examples.demo.WaterActivity"/>
+        <activity android:name=".PullToRefreshActivity"/>
     </application>
 
 </manifest>

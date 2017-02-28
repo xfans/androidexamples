@@ -2,6 +2,7 @@ package com.examples.demo.widget;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
@@ -9,6 +10,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.LinearInterpolator;
+
+import com.examples.demo.R;
 
 /**
  * Created by zhu on 16/8/23.
@@ -18,6 +21,7 @@ public class WaterView extends View {
     int a;
     int b;
     int mRotate;
+    int mColor;
     ValueAnimator mValueAnimator;
     public WaterView(Context context) {
         this(context, null);
@@ -29,16 +33,21 @@ public class WaterView extends View {
 
     public WaterView(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.WaterView);
+        mColor = a.getColor(R.styleable.WaterView_water_color, Color.BLUE);
+        a.recycle();
         mWavePaint = new Paint();
         mWavePaint.setStrokeWidth(1.0F);
-        mWavePaint.setColor(Color.RED);
+        mWavePaint.setColor(mColor);
 
     }
 
 
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-        setMeasuredDimension(View.resolveSize(100,widthMeasureSpec),View.resolveSize(100,widthMeasureSpec));
+//        setMeasuredDimension(resolveSize(100,widthMeasureSpec),resolveSize(100,widthMeasureSpec));
+        setMeasuredDimension(getDefaultSize(getSuggestedMinimumWidth(), widthMeasureSpec),
+                getDefaultSize(getSuggestedMinimumHeight(), heightMeasureSpec));
         mValueAnimator = ValueAnimator.ofInt(0,getMeasuredHeight());
         mValueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
             @Override
