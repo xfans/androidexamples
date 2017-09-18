@@ -19,9 +19,8 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
             "Move Logger Example", "Touch Listener Example",
             "Touch Delegate Example", "Touch Forward Example",
             "Pan Example", "Pan Gesture Example",
-	        "Multi-Touch Example", "Disable Touch Intercept", "Rotate Image",
-            "ScrollerLayout","ScrollerLayout2","TouchEvent","WaterActivity",
-            "PullToRefreshActivity","SVG Activity"};
+	        "Multi-Touch Example", "Disable Touch Intercept", "Rotate Image","ScrollerLayout","ScrollerLayout2","TouchEvent","WaterActivity","PullToRefreshActivity"
+            ,"PhotoView","SVG Activity"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -78,6 +77,9 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
                 startActivity(new Intent(this, PullToRefreshActivity.class));
                 break;
             case 14: //Disable Touch Intercept
+                startActivity(new Intent(this, PhotoViewActivity.class));
+                break;
+            case 15: //Disable Touch Intercept
                 startActivity(new Intent(this, SVGTestActivity.class));
                 break;
             default:

@@ -35,6 +35,7 @@
         <activity android:name="com.examples.demo.TouchActivity"/>
         <activity android:name="com.examples.demo.WaterActivity"/>
         <activity android:name=".PullToRefreshActivity"/>
+        <activity android:name=".PhotoViewActivity"/>
         <activity android:name=".SVGTestActivity"/>
     </application>
 
