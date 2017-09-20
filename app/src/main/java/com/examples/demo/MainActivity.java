@@ -20,7 +20,7 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
             "Touch Delegate Example", "Touch Forward Example",
             "Pan Example", "Pan Gesture Example",
 	        "Multi-Touch Example", "Disable Touch Intercept", "Rotate Image","ScrollerLayout","ScrollerLayout2","TouchEvent","WaterActivity","PullToRefreshActivity"
-            ,"PhotoView","SVG Activity"};
+            ,"PhotoView","SVG Activity","CanvasLayerActivity"};
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -82,6 +82,10 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
             case 15: //Disable Touch Intercept
                 startActivity(new Intent(this, SVGTestActivity.class));
                 break;
+            case 16: //Disable Touch Intercept
+                startActivity(new Intent(this, CanvasLayerActivity.class));
+                break;
+
             default:
                 break;
         }

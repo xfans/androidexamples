@@ -22,7 +22,7 @@ public class SVGTestActivity extends Activity {
         //imageView.setImageResource(R.drawable.ic_launcher);
         setContentView(imageView);
         try {
-            SVG svg = SVG.getFromResource(this, R.raw.svg_yun);
+            SVG svg = SVG.getFromResource(this, R.raw.svg_333);
             Drawable drawable = new PictureDrawable(svg.renderToPicture());
             imageView.setImageDrawable(drawable);
         } catch (SVGParseException e) {

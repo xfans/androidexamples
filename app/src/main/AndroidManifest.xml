@@ -37,6 +37,7 @@
         <activity android:name=".PullToRefreshActivity"/>
         <activity android:name=".PhotoViewActivity"/>
         <activity android:name=".SVGTestActivity"/>
+        <activity android:name=".CanvasLayerActivity"/>
     </application>
 
 </manifest>
