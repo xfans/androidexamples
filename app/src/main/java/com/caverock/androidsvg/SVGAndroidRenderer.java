@@ -613,6 +613,10 @@ class SVGAndroidRenderer
    private void render(SVG.Group obj)
    {
       debug("Group render");
+      if (obj.id.startsWith("_x")) {
+         //TODO xfans 添加 interceptor
+         debug("id:"+obj.id);
+      }
 
       updateStyleForElement(state, obj);
 
