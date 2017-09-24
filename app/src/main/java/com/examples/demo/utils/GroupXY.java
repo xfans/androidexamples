@@ -13,16 +13,16 @@ public class GroupXY {
         this.y = y;
     }
 
-    public int getX() {
-        return (int) x;
+    public float getX() {
+        return x;
     }
 
     public void setX(int x) {
         this.x = x;
     }
 
-    public int getY() {
-        return (int) y;
+    public float getY() {
+        return y;
     }
 
     public void setY(int y) {

@@ -8,8 +8,8 @@ public class Marker {
 
     private Drawable icon;
     private int gravity = Gravity.TOP | Gravity.LEFT;
-    private int locationX = 0;
-    private int locationY = 0;
+    private float locationX = 0;
+    private float locationY = 0;
     private int offsetX = 0;
     private int offsetY = 0;
     private float zoom = 1f;
@@ -46,17 +46,17 @@ public class Marker {
      * @param x X coordinate in pixels relative to original image.
      * @param y Y coordinate in pixels relative to original image.
      */
-    public Marker setLocation(int x, int y) {
+    public Marker setLocation(float x, float y) {
         locationX = x;
         locationY = y;
         return this;
     }
 
-    public int getLocationX() {
+    public float getLocationX() {
         return locationX;
     }
 
-    public int getLocationY() {
+    public float getLocationY() {
         return locationY;
     }
 
