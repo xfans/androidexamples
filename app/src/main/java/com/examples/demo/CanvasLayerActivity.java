@@ -24,7 +24,18 @@ public class CanvasLayerActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.canvas_layer_view);
         customCanvasLayerView = (CustomCanvasLayerView) findViewById(R.id.view);
+        customCanvasLayerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
+        customCanvasLayerView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                return false;
+            }
+        });
         findViewById(R.id.click).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
