@@ -16,20 +16,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.examples.demo.ex1.MoveLoggerActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.ex2.TouchListenerActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.ex3.TouchDelegateActivity"
+                  android:screenOrientation="portrait"/>
+        <activity android:name="com.examples.demo.ex4.TouchForwardActivity"
+                  android:screenOrientation="portrait"/>
         <activity android:name="com.examples.demo.ex5.TwoDimensionScrollActivity"
             android:screenOrientation="portrait"/>
         <activity android:name="com.examples.demo.ex6.TwoDimensionGestureScrollActivity"
                   android:screenOrientation="portrait"/>
         <activity android:name="com.examples.demo.ex7.MultitouchActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.ex1.MoveLoggerActivity"
-                  android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.ex4.TouchForwardActivity"
-                  android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.ex3.TouchDelegateActivity"
-            android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.ex2.TouchListenerActivity"
-                  android:screenOrientation="portrait"/>
+
         <activity android:name="com.examples.demo.ex8.TouchInterceptActivity" />
         <activity android:name="com.examples.demo.ex9.ImageActivity"/>
         <activity android:name="com.examples.demo.ex10.ScrollerActivity"/>
@@ -40,6 +41,8 @@
         <activity android:name=".ex15.PhotoViewActivity"/>
         <activity android:name=".ex16.SVGTestActivity"/>
         <activity android:name=".ex17.CanvasLayerActivity"/>
+        <activity android:name=".ex18.CanvasActivity"
+            android:exported="true"/>
     </application>
 
 </manifest>
