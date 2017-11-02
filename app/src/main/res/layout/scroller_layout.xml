@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.examples.demo.widget.ScrollerLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                         android:id="@+id/sl"
-                                         android:layout_width="match_parent"
-                                         android:layout_height="match_parent">
+<com.examples.demo.ex10.ScrollerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                       android:id="@+id/sl"
+                                       android:layout_width="match_parent"
+                                       android:layout_height="match_parent">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <com.examples.demo.widget.ScrollViewPager
+        <com.examples.demo.ex10.ScrollViewPager
             android:id="@+id/vp"
             android:background="#cccccc"
             android:layout_width="match_parent"
@@ -22,4 +22,4 @@
         android:layout_height="match_parent"
         android:background="#00ff00">
     </FrameLayout>
-</com.examples.demo.widget.ScrollerLayout>
+</com.examples.demo.ex10.ScrollerLayout>

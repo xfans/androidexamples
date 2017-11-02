@@ -5,7 +5,7 @@
                 android:background="#ffffff"
                 android:clickable="true">
 
-    <com.examples.demo.widget.CustomCanvasLayerView
+    <com.examples.demo.ex17.CustomCanvasLayerView
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

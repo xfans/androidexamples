@@ -16,30 +16,30 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.examples.demo.TwoDimensionScrollActivity"
+        <activity android:name="com.examples.demo.ex5.TwoDimensionScrollActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.TwoDimensionGestureScrollActivity"
+        <activity android:name="com.examples.demo.ex6.TwoDimensionGestureScrollActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.MultitouchActivity"
+        <activity android:name="com.examples.demo.ex7.MultitouchActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.MoveLoggerActivity"
+        <activity android:name="com.examples.demo.ex1.MoveLoggerActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.TouchForwardActivity"
+        <activity android:name="com.examples.demo.ex4.TouchForwardActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.TouchDelegateActivity"
+        <activity android:name="com.examples.demo.ex3.TouchDelegateActivity"
             android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.TouchListenerActivity"
+        <activity android:name="com.examples.demo.ex2.TouchListenerActivity"
                   android:screenOrientation="portrait"/>
-        <activity android:name="com.examples.demo.TouchInterceptActivity" />
-        <activity android:name="com.examples.demo.ImageActivity"/>
-        <activity android:name="com.examples.demo.ScrollerActivity"/>
-        <activity android:name="com.examples.demo.ScrollerActivity2"/>
-        <activity android:name="com.examples.demo.TouchActivity"/>
-        <activity android:name="com.examples.demo.WaterActivity"/>
-        <activity android:name=".PullToRefreshActivity"/>
-        <activity android:name=".PhotoViewActivity"/>
-        <activity android:name=".SVGTestActivity"/>
-        <activity android:name=".CanvasLayerActivity"/>
+        <activity android:name="com.examples.demo.ex8.TouchInterceptActivity" />
+        <activity android:name="com.examples.demo.ex9.ImageActivity"/>
+        <activity android:name="com.examples.demo.ex10.ScrollerActivity"/>
+        <activity android:name="com.examples.demo.ex11.ScrollerActivity2"/>
+        <activity android:name="com.examples.demo.ex12.TouchActivity"/>
+        <activity android:name="com.examples.demo.ex13.WaterActivity"/>
+        <activity android:name=".ex14.PullToRefreshActivity"/>
+        <activity android:name=".ex15.PhotoViewActivity"/>
+        <activity android:name=".ex16.SVGTestActivity"/>
+        <activity android:name=".ex17.CanvasLayerActivity"/>
     </application>
 
 </manifest>

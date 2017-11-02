@@ -30,18 +30,18 @@
             android:layout_height="wrap_content"
             android:text="clear"/>
     </LinearLayout>
-<com.examples.demo.widget.LLayout
+<com.examples.demo.ex12.LLayout
     android:id="@+id/ll"
     android:layout_width="match_parent"
     android:layout_height="0dp"
     android:layout_weight="1"
     android:background="#ff0000">
-    <com.examples.demo.widget.LView
+    <com.examples.demo.ex12.LView
         android:id="@+id/lv"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:background="#0000ff"/>
-</com.examples.demo.widget.LLayout>
+</com.examples.demo.ex12.LLayout>
     <TextView
         android:id="@+id/tv"
         android:layout_width="match_parent"

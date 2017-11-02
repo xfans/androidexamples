@@ -6,13 +6,13 @@
               android:background="#ffffff"
               android:orientation="vertical">
 
-    <com.examples.demo.widget.RotateImage
+    <com.examples.demo.ex9.RotateImage
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:scaleType="centerCrop"
         android:src="@drawable/fm"/>
 
-    <com.examples.demo.widget.RotateImage1
+    <com.examples.demo.ex9.RotateImage1
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:scaleType="centerCrop"

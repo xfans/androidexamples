@@ -8,86 +8,107 @@ package com.examples.demo;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
+import android.widget.BaseAdapter;
+import android.widget.TextView;
+
+import com.examples.demo.ex1.MoveLoggerActivity;
+import com.examples.demo.ex10.ScrollerActivity;
+import com.examples.demo.ex11.ScrollerActivity2;
+import com.examples.demo.ex12.TouchActivity;
+import com.examples.demo.ex13.WaterActivity;
+import com.examples.demo.ex14.PullToRefreshActivity;
+import com.examples.demo.ex15.PhotoViewActivity;
+import com.examples.demo.ex16.SVGTestActivity;
+import com.examples.demo.ex17.CanvasLayerActivity;
+import com.examples.demo.ex2.TouchListenerActivity;
+import com.examples.demo.ex3.TouchDelegateActivity;
+import com.examples.demo.ex4.TouchForwardActivity;
+import com.examples.demo.ex5.TwoDimensionScrollActivity;
+import com.examples.demo.ex6.TwoDimensionGestureScrollActivity;
+import com.examples.demo.ex7.MultitouchActivity;
+import com.examples.demo.ex8.TouchInterceptActivity;
+import com.examples.demo.ex9.ImageActivity;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
 
 public class MainActivity extends ListActivity implements OnItemClickListener {
 
-	private static final String[] ITEMS = {
-            "Move Logger Example", "Touch Listener Example",
-            "Touch Delegate Example", "Touch Forward Example",
-            "Pan Example", "Pan Gesture Example",
-	        "Multi-Touch Example", "Disable Touch Intercept", "Rotate Image","ScrollerLayout","ScrollerLayout2","TouchEvent","WaterActivity","PullToRefreshActivity"
-            ,"PhotoView","SVG Activity","CanvasLayerActivity"};
-	
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ITEMS);
-		getListView().setAdapter(adapter);
-		getListView().setOnItemClickListener(this);
+    List<Class> mActivities;
 
-	}
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        switch (position) {
-            case 0: //Move Logger View
-                startActivity(new Intent(this, MoveLoggerActivity.class));
-                break;
-            case 1: //Touch Listener
-                startActivity(new Intent(this, TouchListenerActivity.class));
-                break;
-            case 2: //Touch Delegate
-                startActivity(new Intent(this, TouchDelegateActivity.class));
-                break;
-            case 3: //Touch Forwarding
-                startActivity(new Intent(this, TouchForwardActivity.class));
-                break;
-            case 4: //2D Scrolling
-                startActivity(new Intent(this, TwoDimensionScrollActivity.class));
-                break;
-            case 5: //2D GestureDetector Scrolling
-                startActivity(new Intent(this, TwoDimensionGestureScrollActivity.class));
-                break;
-            case 6: //Multi-Touch Image View
-                startActivity(new Intent(this, MultitouchActivity.class));
-                break;
-            case 7: //Disable Touch Intercept
-                startActivity(new Intent(this, TouchInterceptActivity.class));
-                break;
-            case 8: //Disable Touch Intercept
-                startActivity(new Intent(this, ImageActivity.class));
-                break;
-            case 9: //Disable Touch Intercept
-                startActivity(new Intent(this, ScrollerActivity.class));
-                break;
-            case 10: //Disable Touch Intercept
-                startActivity(new Intent(this, ScrollerActivity2.class));
-                break;
-            case 11: //Disable Touch Intercept
-                startActivity(new Intent(this, TouchActivity.class));
-                break;
-            case 12: //Disable Touch Intercept
-                startActivity(new Intent(this, WaterActivity.class));
-                break;
-            case 13: //Disable Touch Intercept
-                startActivity(new Intent(this, PullToRefreshActivity.class));
-                break;
-            case 14: //Disable Touch Intercept
-                startActivity(new Intent(this, PhotoViewActivity.class));
-                break;
-            case 15: //Disable Touch Intercept
-                startActivity(new Intent(this, SVGTestActivity.class));
-                break;
-            case 16: //Disable Touch Intercept
-                startActivity(new Intent(this, CanvasLayerActivity.class));
-                break;
+//        getListView().setSelectionFromTop(17,-200);
 
-            default:
-                break;
+        List<Class> excludeList = new ArrayList<Class>();
+        excludeList.add(this.getClass());
+        mActivities = ClassUtils.getActivitiesClass(this, getPackageName(), excludeList);
+
+//        Collections.sort(mActivities, new Comparator<Class>() {
+//            @Override
+//            public int compare(Class o1, Class o2) {
+//                String s1 = o1.toString();
+//                String ns1 = s1.substring(0,s1.lastIndexOf("."));
+//
+//                String s2 = o2.toString();
+//                String ns2 = s2.substring(0,s2.lastIndexOf("."));
+//
+//                return ns1.compareTo(ns2);
+//            }
+//        });
+        getListView().setAdapter(new Adapter());
+        getListView().setOnItemClickListener(this);
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        startActivity(new Intent(MainActivity.this, mActivities.get(position)));
+    }
+
+    class Adapter extends BaseAdapter {
+
+        @Override
+        public int getCount() {
+            return mActivities.size();
         }
+
+        @Override
+        public Object getItem(int position) {
+            return mActivities.get(position);
+        }
+
+        @Override
+        public long getItemId(int position) {
+            return position;
+        }
+
+        @Override
+        public View getView(int position, View convertView, ViewGroup parent) {
+            ViewHolder holder = null;
+            if (convertView == null) {
+                convertView = LayoutInflater.from(MainActivity.this).inflate(R.layout.main_item, null);
+                holder = new ViewHolder();
+                holder.textView = (TextView) convertView.findViewById(R.id.title);
+                convertView.setTag(holder);
+            } else {
+                holder = (ViewHolder) convertView.getTag();
+            }
+            holder.textView.setText(mActivities.get(position).getSimpleName());
+            return convertView;
+        }
+    }
+
+    public static class ViewHolder {
+        public TextView textView;
     }
 }
