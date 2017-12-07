@@ -8,9 +8,11 @@ package com.examples.demo;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ArrayAdapter;
@@ -66,8 +68,28 @@ public class MainActivity extends ListActivity implements OnItemClickListener {
 //                return ns1.compareTo(ns2);
 //            }
 //        });
+        TextView textView = new TextView(MainActivity.this);
+        textView.setLayoutParams(new AbsListView.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 200));
+        textView.setText("header");
+        getListView().addHeaderView(textView);
         getListView().setAdapter(new Adapter());
         getListView().setOnItemClickListener(this);
+        getListView().setOnScrollListener(new AbsListView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                int mPosition = getListView().getFirstVisiblePosition();
+                View v = getListView().getChildAt(0);
+                View v1 = getListView().getChildAt(1);
+                int lvChildTop = (v == null) ? 0 : v.getTop();
+                int lvChildTop1 = (v == null) ? 0 : v1.getTop();
+                Log.e("onScroll", " mPosition:" + mPosition + " lvChildTop:" + lvChildTop+ " lvChildTop1:" + lvChildTop1);
+            }
+        });
     }
 
     @Override
